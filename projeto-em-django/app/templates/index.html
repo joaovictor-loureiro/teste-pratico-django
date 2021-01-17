@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <title>Teste prático - Projeto em Django</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="fixed-top">
+                <div id="title" class="col-11 m-auto pt-5">
+                        <h1>PESSOAS CADASTRADAS</h1>
+                        <a href="/form" id="btn-adicionar" class="btn btn-success">NOVO CADASTRO</a>
+                </div>
+
+                <div class="col-11 m-auto pt-5">
+                    <form method="get">
+                        <input type="text" id="search" name="search" class="form-control" placeholder="Buscar...">
+                        <small id="buscar" class="form-text text-muted">Digite o nome desejado e press ENTER. Para limpar o filtro, basta dar ENTER com o campo vazio.</small>
+                    </form>
+                </div>
+                <div class="col-11 m-auto pt-3">
+                    <table class="table table-hover table-sm text-center">
+                        <thead>
+                            <tr class="row">
+                                <th class="col-3" scope="col">NOME</th>
+                                <th class="col-1" scope="col">APELIDO</th>
+                                <th class="col-1" scope="col">IDADE</th>
+                                <th class="col-2" scope="col">DATA DE NASCIMENTO</th>
+                                <th class="col-3" scope="col">E-MAIL</th>
+                                <th class="col-1" scope="col">OBSERVAÇÃO</th>
+                                <th class="col-1" scope="col"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <div id="table-content" class="col-11 m-auto pt-4 pb-2 text-center">
+                <table class="table table-hover table-sm">
+                    <tbody>
+                        {% for dbs in db %}
+                        <tr class="row">
+                            <td class="col-3">{{dbs.nome}} {{dbs.sobrenome}}</td>
+                            <td class="col-1">{{dbs.apelido}}</td>
+                            <td class="col-1">{{dbs.idade}}</td>
+                            <td class="col-2">{{dbs.data_de_nascimento}}</td>
+                            <td class="col-3">{{dbs.email}}</td>
+                            <td class="col-1">
+                                <button type="button" class="" data-toggle="modal" data-target="#modalid{{dbs.id}}">
+                                    <img src="{% static 'images/info.svg' %}" alt="Observação">
+                                </button>
+                                <div class="modal fade" id="modalid{{dbs.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">{{dbs.nome}} {{dbs.sobrenome}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{dbs.observacao}}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-1">
+                                <a href="/edit/{{dbs.id}}/"  class="btn btn-sm btn-warning"><img src="{% static 'images/editar.svg' %}" alt="Editar"></i></a>
+                                <a href="/delete/{{dbs.id}}/" class="btn btn-sm btn-danger btnDel"><img src="{% static 'images/trash.svg' %}" alt="Deletar"></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="{% static 'js/javascript.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

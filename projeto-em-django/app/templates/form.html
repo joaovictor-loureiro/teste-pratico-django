@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <title>Formulário</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% load crispy_forms_tags %}
+    </head>
+    <body>
+        <div class="container">
+            {% block content %}
+            <div class="col-8 m-auto pt-5 text-center">
+                {% if db %}<h1>EDITAR CADASTRO</h1>{% else %}<h1>CADASTRAR PESSOA</h1>{% endif %}
+            </div>
+
+            <div class="col-8 m-auto pt-5 pb-4">
+                <div id="result"></div>
+                <form action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}" method="post" id="form" name="form">
+                    {% csrf_token %}
+                    <div class="form-group">{{ form.nome|as_crispy_field }}</div>
+                    <div class="form-group">{{ form.sobrenome|as_crispy_field }}</div>
+                    <div class="form-group">{{ form.apelido|as_crispy_field }}</div>
+                    <div class="form-group">{{ form.idade|as_crispy_field }}</div>
+                    <div class="form-group">
+                        {{ form.data_de_nascimento|as_crispy_field }}
+                        <small class="form-text text-muted">Formato: 00/00/0000</small>
+                    </div>
+                    <div class="form-group">{{ form.email|as_crispy_field }}</div>
+                    <div class="form-group">
+                        {{ form.observacao|as_crispy_field }}
+                        <small class="form-text text-muted">* Campos obrigatórios.</small>
+                    </div>
+
+                    <div class="col-8 m-auto pt-3 d-flex justify-content-between">
+                        <input type="submit" class="btn btn-success" value="Salvar">
+                        <a href="/" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            {% endblock %}
+        </div>
+    </body>
+</html>

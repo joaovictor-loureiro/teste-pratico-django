@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*
+{
+    font-family: 'Poppins', sans-serif;
+}
+
+#btn-adicionar
+{
+    color: #28a745;
+    background-color: #fff;
+    transition: .6s;
+    display: flex;
+    align-items: center;
+    padding: 0px 50px;
+    font-size: 1.4em;
+    letter-spacing: 3px;
+    border: 2px solid #28a745;
+}
+
+#btn-adicionar:hover
+{
+    color: #fff;
+    background-color: #28a745;
+}
+
+small
+{
+    margin-top: -0.75rem !important;
+}
+
+small#buscar
+{
+    margin-top: 0.25rem !important;
+}
+
+div.fixed-top
+{
+    background-color: white;
+}
+
+div#title
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+div#table-content
+{
+    margin-top: 254px !important;
+    font-weight: 300;
+}
+
+img
+{
+    height: 12px;
+}
+
+.btn:focus, button:focus
+{
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn img
+{
+    filter: invert(1);
+}
+
+.btn img:hover
+{
+    height: 15px;
+}
+
+button
+{
+    border: none !important;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button img
+{
+    height: 20px;
+}
+
+button:hover img
+{
+    height: 23px;
+}
+
+
